@@ -1,0 +1,33 @@
+services:
+  mautic:
+    build: .
+    image: mautic-google-oauth2
+    container_name: mautic
+    restart: always
+    ports:
+      - "8063:80"
+    external_links:
+      - ${MYSQL_HOST}
+    mem_limit: 1G
+    volumes:
+      - ./media:/var/www/html/media
+      - ./conf/local.php:/var/www/html/config/local.php
+    environment:
+      - MAUTIC_DB_HOST=${MYSQL_HOST}
+      - MAUTIC_DB_USER=${MYSQL_USER}
+      - MAUTIC_DB_PASSWORD=${MYSQL_PASSWORD}
+      - MAUTIC_DB_NAME=${MYSQL_DATABASE}
+      - MAUTIC_MAILER_DSN=gmail://${G_OAUTH2_SMTP_USER}@default?client_id=${G_OAUTH2_CLIENT_ID}&client_secret=${G_OAUTH2_CLIENT_SECRET}&refresh_token=${G_OAUTH2_REFRESH_TOKEN}
+      - VIRTUAL_HOST=${SITE_HOST}
+      - SELF_SIGNED_HOST=${SITE_HOST}
+    healthcheck:
+      test: curl http://localhost
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 100
+
+networks:
+  default:
+    name: ${NETWORK_NAME}
+    external: true
