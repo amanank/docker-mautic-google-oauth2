@@ -11,7 +11,6 @@ services:
     mem_limit: 1G
     volumes:
       - ./media:/var/www/html/media
-      - ./conf/local.php:/var/www/html/config/local.php
     environment:
       - MAUTIC_DB_HOST=${MYSQL_HOST}
       - MAUTIC_DB_USER=${MYSQL_USER}

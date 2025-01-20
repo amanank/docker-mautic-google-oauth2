@@ -106,6 +106,8 @@ ENV PHP_INI_VALUE_DATE_TIMEZONE='UTC' \
 
 COPY ./conf/php.ini /usr/local/etc/php/php.ini
 
+COPY ./conf/local.template.php /var/www/html/app/config/local.php
+
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/docroot
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
