@@ -45,12 +45,18 @@ Before you begin, ensure you have the following:
     ```
     Then, update the `.env` file with your Google OAuth2 credentials and other necessary configurations.
 
-3. **Build and Run the Docker Containers**:
+3. **Copy Configuration File**: Create a copy of `conf/local.template.php` to `conf/local.php`:
+    ```sh
+    cp conf/local.template.php conf/local.php
+    ```
+    It is not required to change anything in this file. The Mautic installer will write to it.
+
+4. **Build and Run the Docker Containers**:
     ```sh
     docker compose up -d
     ```
 
-4. **Access Mautic**: Once the containers are up and running, you can access Mautic at `http://<your-site-host>`.
+5. **Access Mautic**: Once the containers are up and running, you can access Mautic at `http://<your-site-host>`.
 
 ## Configuration Files
 
@@ -91,4 +97,10 @@ For more details, refer to the individual configuration files and scripts in the
 docker exec -it mautic rm -rf /var/www/html/cache/*
 ```
 
-For more details, refer to the individual configuration files and scripts in the repository.
+### Problem: Mautic installer runs every time the container is restarted
+**Solution**: Ensure the "Copy Configuration File" step is completed. If not, stop the container, create the configuration file, and start the container again:
+```sh
+docker compose down
+cp conf/local.template.php conf/local.php
+docker compose up -d
+```
