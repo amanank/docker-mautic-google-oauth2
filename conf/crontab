@@ -1,0 +1,6 @@
+*/15 * * * * php /var/www/html/bin/console mautic:segments:update
+*/15 * * * * php /var/www/html/bin/console mautic:campaigns:update
+*/15 * * * * php /var/www/html/bin/console mautic:campaigns:trigger
+*/15 * * * * php /var/www/html/bin/console mautic:emails:send
+*/15 * * * * php /var/www/html/bin/console mautic:queue:process
+*/15 * * * * php /var/www/html/bin/console mautic:email:fetch

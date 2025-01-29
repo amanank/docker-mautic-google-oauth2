@@ -8,5 +8,9 @@ while [[ $(mysqladmin --host=$MAUTIC_DB_HOST --port=$MAUTIC_DB_PORT --user=$MAUT
 done
 
 
+# Set executable permissions for bin/console
+chmod +x /var/www/html/bin/console
+
+
 # execute the provided entrypoint
 "$@"

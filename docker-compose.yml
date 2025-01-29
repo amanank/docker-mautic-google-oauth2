@@ -11,6 +11,7 @@ services:
     mem_limit: 1G
     volumes:
       - ./media:/var/www/html/media
+      - ./conf/crontab:/etc/crontab
       - ./conf/local.php:/var/www/html/config/local.php
     environment:
       - MAUTIC_DB_HOST=${MYSQL_HOST}
