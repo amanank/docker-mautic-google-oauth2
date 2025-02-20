@@ -12,4 +12,8 @@ $parameters = array(
 	'mailer_dsn' => getenv('MAUTIC_MAILER_DSN'),
 	'db_host_ro' => null,
 	'site_url' => getenv('SITE_URL'),
+  'mailer_spool' => [
+        'message_limit' => 1500,
+        'time_limit' => 86400, // 24 hours in seconds
+    ],
 );
