@@ -58,6 +58,16 @@ Before you begin, ensure you have the following:
 
 5. **Access Mautic**: Once the containers are up and running, you can access Mautic at `http://<your-site-host>`.
 
+
+6. Setup cron job
+   ```sh
+	 # on host
+	 sudo crontab -e
+
+	 # add
+	 */15 * * * * /path/to/mautic-cron.sh
+	 ```
+
 ## Configuration Files
 
 - **`conf/local.php`**: Contains the database and mailer configurations.
